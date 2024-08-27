@@ -21,24 +21,24 @@ repositories {
 }
 
 dependencies {
-
-    implementation 'org.openjdk.jmh:jmh-core:1.19'
-    implementation 'org.openjdk.jmh:jmh-generator-annprocess:1.19'
-
+    implementation 'org.openjdk.jmh:jmh-core:1.36'
+    implementation 'org.openjdk.jmh:jmh-generator-annprocess:1.36'
     implementation 'org.springframework.boot:spring-boot-starter-tomcat'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.projectlombok:lombok'
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     annotationProcessor 'org.projectlombok:lombok'
-
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.4.2'
     testImplementation 'org.mockito:mockito-junit-jupiter:2.23.4'
     testImplementation 'org.hamcrest:hamcrest:2.1'
-
     testAnnotationProcessor 'org.projectlombok:lombok'
-
     testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
+}
+
+compileJava {
+    options.annotationProcessorPath = configurations.annotationProcessor
 }
 
 test {

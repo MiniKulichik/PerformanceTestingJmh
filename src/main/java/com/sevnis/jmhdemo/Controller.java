@@ -1,5 +1,7 @@
 package com.sevnis.jmhdemo;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,27 +9,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Controller {
 
-    @PostMapping("/equalignorecse")
-    public String equalIgnoreCase(@RequestBody RequestData requestData) {
-        for (int i = 0; i < requestData.getData().size(); i++) {
-            if (requestData.getData().get(i).equalsIgnoreCase("string500")) {
-                break;
+    @PostMapping("/equalignorecase")
+    public ResponseEntity<String> equalIgnoreCase(@RequestBody RequestData requestData) {
+        for (String item : requestData.getData()) {
+            if (item.equalsIgnoreCase("string500")) {
+                return new ResponseEntity<>("Condition met", HttpStatus.BAD_REQUEST);
             }
         }
-
-        return "OK";
+        return ResponseEntity.ok("OK");
     }
 
     @PostMapping("/equalonly")
-
-    public String equalOnly(@RequestBody RequestData requestData) {
-        for (int i = 0; i < requestData.getData().size(); i++) {
-            if (requestData.getData().get(i).equals("string500")) {
-                break;
+    public ResponseEntity<String> equalOnly(@RequestBody RequestData requestData) {
+        for (String item : requestData.getData()) {
+            if (item.equals("string500")) {
+                return new ResponseEntity<>("Condition met", HttpStatus.BAD_REQUEST);
             }
         }
-
-        return "OK";
+        return ResponseEntity.ok("OK");
     }
 
 }
